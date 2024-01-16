@@ -1,0 +1,21 @@
+using System;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
+namespace newclass2
+{
+    class Class1
+    {
+        [STAThread]
+        static void Main(string[] args)
+        {
+            TcpServerChannel channel = new TcpServerChannel(1234);
+            ChannelServices.RegisterChannel(channel, false);
+            RemotingConfiguration.RegisterWellKnownServiceType
+            (typeof(newclass.ShowCapital), "ShowCapital",
+            WellKnownObjectMode.SingleCall);
+            Console.WriteLine("Starting...");
+            Console.ReadLine();
+        }
+    }
+}
